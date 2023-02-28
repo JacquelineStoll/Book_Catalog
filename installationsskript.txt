@@ -1,0 +1,66 @@
+drop table if exists book;
+create table book (
+    b_id int primary key,
+    titel varchar(255),
+    auflage varchar(255),
+    a_id int,
+    v_id int,
+    g_id int
+);
+
+drop table if exists autor;
+create table autor (
+    a_id int primary key,
+    vorname varchar(255),
+    nachname varchar(255),
+    geburtsdatum date
+);
+
+drop table if exists ausleihung;
+create table ausleihung (
+    al_id int primary key,
+    startdatum date,
+    enddatum date,
+    zurueckgegeben bit(1),
+    k_id int,
+    b_id int
+);
+
+drop table if exists genre;
+create table genre (
+    g_id int primary key,
+    name varchar(255)
+);
+
+drop table if exists kunde;
+create table kunde (
+    k_id int primary key,
+    vorname varchar(255),
+    nachname varchar(255),
+    geburtsdatum date,
+    strasse varchar(255),
+    hausnummer varchar(255),
+    plz varchar(255),
+    ort varchar(255)
+);
+
+drop table if exists verlag;
+create table verlag (
+    v_id int primary key,
+    name varchar(255),
+    standort varchar(255)
+);
+
+alter table book
+add constraint autor_id
+foreign key (a_id) references autor(a_id),
+add constraint verlag_id
+foreign key (v_id) references verlag(v_id),
+add constraint genre_id
+foreign key (g_id) references genre(g_id);
+
+alter table ausleihung
+add constraint kunde_id
+foreign key (k_id) references kunde(k_id),
+add constraint book_id
+foreign key (b_id) references book(b_id);
