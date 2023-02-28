@@ -10,7 +10,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int b_id;
 
     private String titel;
 
@@ -25,8 +25,9 @@ public class Book {
 
     //private Ausleihung ausleihung;
 
-    public Book(){
-        //TODO Constructor befüllen
+    public Book(String titel, String auflage) {
+        this.titel = titel;
+        this.auflage = auflage;
     }
 
     //TODO getter + setter
