@@ -1,8 +1,9 @@
 drop table if exists book;
 create table book (
-    b_id int primary key,
+    b_id int primary key auto_increment,
     titel varchar(255),
     auflage varchar(255),
+    klappentext text,
     a_id int,
     v_id int,
     g_id int
@@ -10,7 +11,7 @@ create table book (
 
 drop table if exists autor;
 create table autor (
-    a_id int primary key,
+    a_id int primary key auto_increment,
     vorname varchar(255),
     nachname varchar(255),
     geburtsdatum date
@@ -18,7 +19,7 @@ create table autor (
 
 drop table if exists ausleihung;
 create table ausleihung (
-    al_id int primary key,
+    al_id int primary key auto_increment,
     startdatum date,
     enddatum date,
     zurueckgegeben bit(1),
@@ -28,13 +29,13 @@ create table ausleihung (
 
 drop table if exists genre;
 create table genre (
-    g_id int primary key,
+    g_id int primary key auto_increment,
     name varchar(255)
 );
 
 drop table if exists kunde;
 create table kunde (
-    k_id int primary key,
+    k_id int primary key auto_increment,
     vorname varchar(255),
     nachname varchar(255),
     geburtsdatum date,
@@ -46,7 +47,7 @@ create table kunde (
 
 drop table if exists verlag;
 create table verlag (
-    v_id int primary key,
+    v_id int primary key auto_increment,
     name varchar(255),
     standort varchar(255)
 );
@@ -64,3 +65,31 @@ add constraint kunde_id
 foreign key (k_id) references kunde(k_id),
 add constraint book_id
 foreign key (b_id) references book(b_id);
+
+truncate autor;
+insert into autor (vorname, nachname, geburtsdatum)
+values
+	('J. R. R.', 'Tolkien', '1892-01-03'),
+	('E. L.', 'James', '1963-03-07'),
+	('Stephen', 'King', '1947-09-21');
+
+truncate genre;
+insert into genre (`name`)
+values
+	('Horror'),
+	('Sci-Fi'),
+	('Fantasy'),
+	('Romantisch');
+
+truncate verlag;
+insert into verlag (`name`, standort)
+values
+	('Heyne Verlag', 'München'),
+	('Klett-Cotta Verlag', 'Stuttgard'),
+	('Goldmann Verlag', 'München');
+
+insert into book (titel, auflage, klappentext, a_id, v_id, g_id)
+values
+	('Der Herr der Ringe - Die Gefährten', '5. Auflage', 'Der Schauplatz des Herrn der Ringe ist Mittelerde, eine alternative Welt, und erzählt wird von der gefahrvollen Quest einiger Gefährten, die in einem dramatischen Kampf gegen das Böse endet. Durch einen merkwürdigen Zufall fällt dem Hobbit Bilbo Beutlin ein Zauberring zu, dessen Kraft, käme er in die falschen Hände, zu einer absoluten Herrschaft des Bösen führen würde. Bilbo übergibt den Ring an seinen Neffen Frodo, der den Ring in der Schicksalskluft zerstören soll. Hobbits sind kleine, gemütliche Leute, dabei aber erstaunlich zäh. Sie leben in einem ländlichen Idyll, dem Auenland.', 1, 2, 3),
+	('Der Herr der Ringe - Die zwei Türme', '8. Auflage', 'Durch einen merkwürdigen Zufall fällt dem Hobbit Bilbo Beutlin ein Zauberring zu, dessen Kraft, käme er in die falschen Hände, zu einer absoluten Herrschaft des Bösen führen würde. Bilbo übergibt den Ring an seinen Neffen Frodo, der den Ring in der Schicksalskluft zerstören soll. Hobbits sind kleine, gemütliche Leute, dabei aber erstaunlich zäh. Sie leben in einem ländlichen Idyll, dem Auenland.', 1, 2, 3),
+	('Der Herr der Ringe - Die Rückkehr des Königs', '8. Auflage', 'Der Schauplatz des Herrn der Ringe ist Mittelerde, eine alternative Welt, und erzählt wird von der gefahrvollen Quest einiger Gefährten, die in einem dramatischen Kampf gegen das Böse endet. Durch einen merkwürdigen Zufall fällt dem Hobbit Bilbo Beutlin ein Zauberring zu, dessen Kraft, käme er in die falschen Hände, zu einer absoluten Herrschaft des Bösen führen würde. Bilbo übergibt den Ring an seinen Neffen Frodo, der den Ring in der Schicksalskluft zerstören soll. Hobbits sind kleine, gemütliche Leute, dabei aber erstaunlich zäh. Sie leben in einem ländlichen Idyll, dem Auenland.', 1, 2, 3);
