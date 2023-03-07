@@ -1,34 +1,116 @@
 package com.bibliothek;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import com.bibliothek.Author;
+
+import java.sql.Date;
 
 @Entity
+@Table(name = "book")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int b_id;
 
-    private String titel;
+    private String title;
+    @OneToOne
+    private Author author;
+    private String edition;
+    @OneToOne
+    private Publisher publisher;
+    @OneToOne
+    private Genre genre;
+    private Date releaseDate;
+    @OneToOne
+    private Lending lending;
+    private String description;
 
-    //private Autor autor;
-    private String auflage;
-
-    //private Verlag verlag;
-
-    //private Genre genre;
-
-    //private Date veroeffentlichungsDatum;
-
-    //private Ausleihung ausleihung;
-
-    public Book(){
-        //TODO Constructor befüllen
+    public Book(int b_id, String title, Author author, String edition, Publisher publisher, Genre genre, Date releaseDate, Lending lending, String description) {
+        this.b_id = b_id;
+        this.title = title;
+        this.author = author;
+        this.edition = edition;
+        this.publisher = publisher;
+        this.genre = genre;
+        this.releaseDate = releaseDate;
+        this.lending = lending;
+        this.description = description;
     }
 
-    //TODO getter + setter
+    public Book() {
+        //TODO?
+    }
 
+    public int getB_id() {
+        return b_id;
+    }
+
+    public void setB_id(int b_id) {
+        this.b_id = b_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public String getEdition() {
+        return edition;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Lending getLending() {
+        return lending;
+    }
+
+    public void setLending(Lending lending) {
+        this.lending = lending;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
