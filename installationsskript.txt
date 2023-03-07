@@ -1,28 +1,38 @@
+alter table book
+drop constraint autor_id,
+drop constraint verlag_id,
+drop constraint genre_id;
+
+alter table lending
+drop constraint kunde_id,
+drop constraint book_id;
+
 drop table if exists book;
 create table book (
     b_id int primary key auto_increment,
-    titel varchar(255),
-    auflage varchar(255),
-    klappentext text,
+    title varchar(255),
+    edition varchar(255),
+    description text,
+    release_date date;
     a_id int,
     v_id int,
     g_id int
 );
 
-drop table if exists autor;
-create table autor (
+drop table if exists author;
+create table author (
     a_id int primary key auto_increment,
-    vorname varchar(255),
-    nachname varchar(255),
-    geburtsdatum date
+    forename varchar(255),
+    surname varchar(255),
+    date_of_birth date
 );
 
-drop table if exists ausleihung;
-create table ausleihung (
+drop table if exists lending;
+create table lending (
     al_id int primary key auto_increment,
-    startdatum date,
-    enddatum date,
-    zurueckgegeben bit(1),
+    start_date date,
+    end_date date,
+    return_date date,
     k_id int,
     b_id int
 );
@@ -33,47 +43,46 @@ create table genre (
     name varchar(255)
 );
 
-drop table if exists kunde;
-create table kunde (
+drop table if exists customer;
+create table customer (
     k_id int primary key auto_increment,
-    vorname varchar(255),
-    nachname varchar(255),
-    geburtsdatum date,
-    strasse varchar(255),
-    hausnummer varchar(255),
-    plz varchar(255),
-    ort varchar(255)
+    forename varchar(255),
+    surname varchar(255),
+    date_of_birth date,
+    street varchar(255),
+    house_number varchar(255),
+    postal_code varchar(255),
+    city varchar(255)
 );
 
-drop table if exists verlag;
-create table verlag (
+drop table if exists publisher;
+create table publisher (
     v_id int primary key auto_increment,
-    name varchar(255),
-    standort varchar(255)
+    description varchar(255),
+    location varchar(255)
 );
 
 alter table book
 add constraint autor_id
-foreign key (a_id) references autor(a_id),
+foreign key (a_id) references author(a_id),
 add constraint verlag_id
-foreign key (v_id) references verlag(v_id),
+foreign key (v_id) references publisher(v_id),
 add constraint genre_id
 foreign key (g_id) references genre(g_id);
 
-alter table ausleihung
+alter table lending
 add constraint kunde_id
-foreign key (k_id) references kunde(k_id),
+foreign key (k_id) references customer(k_id),
 add constraint book_id
 foreign key (b_id) references book(b_id);
 
-truncate autor;
-insert into autor (vorname, nachname, geburtsdatum)
+insert into author (forename, surname, date_of_birth)
 values
 	('J. R. R.', 'Tolkien', '1892-01-03'),
 	('E. L.', 'James', '1963-03-07'),
-	('Stephen', 'King', '1947-09-21');
+	('Stephen', 'King', '1947-09-21'),
+	('Frank', 'Herbert', '1920-10-08');
 
-truncate genre;
 insert into genre (`name`)
 values
 	('Horror'),
@@ -81,15 +90,21 @@ values
 	('Fantasy'),
 	('Romantisch');
 
-truncate verlag;
-insert into verlag (`name`, standort)
+insert into publisher (description, location)
 values
 	('Heyne Verlag', 'München'),
 	('Klett-Cotta Verlag', 'Stuttgard'),
 	('Goldmann Verlag', 'München');
 
-insert into book (titel, auflage, klappentext, a_id, v_id, g_id)
+insert into book (title, edition, description, a_id, v_id, g_id)
 values
 	('Der Herr der Ringe - Die Gefährten', '5. Auflage', 'Der Schauplatz des Herrn der Ringe ist Mittelerde, eine alternative Welt, und erzählt wird von der gefahrvollen Quest einiger Gefährten, die in einem dramatischen Kampf gegen das Böse endet. Durch einen merkwürdigen Zufall fällt dem Hobbit Bilbo Beutlin ein Zauberring zu, dessen Kraft, käme er in die falschen Hände, zu einer absoluten Herrschaft des Bösen führen würde. Bilbo übergibt den Ring an seinen Neffen Frodo, der den Ring in der Schicksalskluft zerstören soll. Hobbits sind kleine, gemütliche Leute, dabei aber erstaunlich zäh. Sie leben in einem ländlichen Idyll, dem Auenland.', 1, 2, 3),
 	('Der Herr der Ringe - Die zwei Türme', '8. Auflage', 'Durch einen merkwürdigen Zufall fällt dem Hobbit Bilbo Beutlin ein Zauberring zu, dessen Kraft, käme er in die falschen Hände, zu einer absoluten Herrschaft des Bösen führen würde. Bilbo übergibt den Ring an seinen Neffen Frodo, der den Ring in der Schicksalskluft zerstören soll. Hobbits sind kleine, gemütliche Leute, dabei aber erstaunlich zäh. Sie leben in einem ländlichen Idyll, dem Auenland.', 1, 2, 3),
-	('Der Herr der Ringe - Die Rückkehr des Königs', '8. Auflage', 'Der Schauplatz des Herrn der Ringe ist Mittelerde, eine alternative Welt, und erzählt wird von der gefahrvollen Quest einiger Gefährten, die in einem dramatischen Kampf gegen das Böse endet. Durch einen merkwürdigen Zufall fällt dem Hobbit Bilbo Beutlin ein Zauberring zu, dessen Kraft, käme er in die falschen Hände, zu einer absoluten Herrschaft des Bösen führen würde. Bilbo übergibt den Ring an seinen Neffen Frodo, der den Ring in der Schicksalskluft zerstören soll. Hobbits sind kleine, gemütliche Leute, dabei aber erstaunlich zäh. Sie leben in einem ländlichen Idyll, dem Auenland.', 1, 2, 3);
+	('Der Herr der Ringe - Die Rückkehr des Königs', '8. Auflage', 'Der Schauplatz des Herrn der Ringe ist Mittelerde, eine alternative Welt, und erzählt wird von der gefahrvollen Quest einiger Gefährten, die in einem dramatischen Kampf gegen das Böse endet. Durch einen merkwürdigen Zufall fällt dem Hobbit Bilbo Beutlin ein Zauberring zu, dessen Kraft, käme er in die falschen Hände, zu einer absoluten Herrschaft des Bösen führen würde. Bilbo übergibt den Ring an seinen Neffen Frodo, der den Ring in der Schicksalskluft zerstören soll. Hobbits sind kleine, gemütliche Leute, dabei aber erstaunlich zäh. Sie leben in einem ländlichen Idyll, dem Auenland.', 1, 2, 3),
+	('Der Hobbit', '20. Auflage 2012', 'Es war ein schöner Morgen, als ein alter Mann bei Bilbo anklopfte. »Wir wollen hier keine Abenteuer, vielen Dank«, wimmelte er den ungebetenen Besucher ab. »Überhaupt, wie heißen Sie eigentlich?« - »Ich bin Gandalf«, antwortete dieser. Und damit dämmerte es Bilbo: Das Abenteuer hatte schon begonnen. Vor sechzig Jahren hat Tolkien die Geschichte von Bilbo und dem Drachenschatz für seine Kinder niedergeschrieben. Und seit dieser Zeit ist Bilbos gefährliche Reise ein Klassiker der Kinderliteratur. Sehr zum Verdruß Tolkiens übrigens: Um den Eindruck eines Kinderbuches zu korrigieren, hat er später vielfach Überarbeitungen vorgenommen. Diese Neuübersetzung von Tolkien-Kenner Wolfgang Krege basiert - im Unterschied zu der 1957 veröffentlichten Übersetzung - auf der autorisierten Fassung letzter Hand. Somit ist nun eine deutsche Fassung zugänglich, wie Tolkien selbst sie gutheißen würde.', 1, 2, 3),
+	('Dune - Der Wüstenplanet', '1. Auflage', 'Das atemberaubende Panorama unserer Zivilisation in ferner Zukunft - und eine Welt, die man nie vergisst: Arrakis, der Wüstenplanet. Einzigartig, herrlich – und grausam. Und doch haben es die Menschen geschafft, sich dieser lebensfeindlichen Umwelt anzupassen... Frank Herberts Bestseller gilt als Meilenstein der Zukunftsliteratur – ein monumentales Epos, das jede Generation von Leserinnen und Lesern neu für sich entdeckt. Im September 2021 startet die spektakuläre Neuverfilmung dieses Klassikers in den Kinos!', 4, 1, 2);
+
+insert into customer (forename, surname, date_of_birth, street, house_number, postal_code, city)
+values
+	('Finn', 'Schulz', '1999-08-20', 'Dortmunder Straße', '36', 48155, 'Münster'),
+	('Max', 'Mustermann', '1980-10-30', 'Musterweg', '17', 78976, 'Musterhausen');
