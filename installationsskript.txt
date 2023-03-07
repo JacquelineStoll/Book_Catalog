@@ -13,7 +13,7 @@ create table book (
     title varchar(255),
     edition varchar(255),
     description text,
-    release_date date;
+    release_date date,
     a_id int,
     v_id int,
     g_id int
