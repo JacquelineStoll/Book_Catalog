@@ -1,0 +1,16 @@
+--Wie viele Bücher eines Genres hat ein Verlag veröffentlicht
+DROP VIEW IF EXISTS view_verlag_buecher_pro_genre;
+
+CREATE VIEW view_verlag_buecher_pro_genre AS
+SELECT
+	v.description AS Verlag,
+	g.name AS Genre,
+	COUNT(
+		b.b_id) AS 'Buecher pro Genre'
+FROM
+	book b
+	RIGHT JOIN publisher v ON v.v_id = b.v_id
+	JOIN genre g ON g.g_id = b.g_id
+GROUP BY
+	g.g_id,
+	v.v_id;
