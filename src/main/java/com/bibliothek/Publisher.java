@@ -2,6 +2,8 @@ package com.bibliothek;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "publisher")
 public class Publisher {
@@ -12,11 +14,15 @@ public class Publisher {
 
     private String description;
     private String location;
+    @OneToMany
+    @JoinColumn(name = "b_id")
+    private List<Book> bookList;
 
-    public Publisher(int p_id, String description, String location) {
+    public Publisher(int p_id, String description, String location, List<Book> bookList) {
         this.p_id = p_id;
         this.description = description;
         this.location = location;
+        this.bookList = bookList;
     }
 
     public Publisher() {
@@ -45,5 +51,13 @@ public class Publisher {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
     }
 }

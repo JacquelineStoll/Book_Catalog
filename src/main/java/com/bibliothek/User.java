@@ -19,8 +19,10 @@ public class User {
     private String houseNumber;
     private String city;
     private String postalCode;
+    private String username;
+    private String password;
 
-    public User(int u_id, String forename, String surname, Date dateOfBirth, String street, String houseNumber, String city, String postalCode) {
+    public User(int u_id, String forename, String surname, Date dateOfBirth, String street, String houseNumber, String city, String postalCode, String username, String password) {
         this.u_id = u_id;
         this.forename = forename;
         this.surname = surname;
@@ -29,6 +31,8 @@ public class User {
         this.houseNumber = houseNumber;
         this.city = city;
         this.postalCode = postalCode;
+        this.username = username;
+        this.password = password;
     }
 
     public User() {
@@ -97,5 +101,21 @@ public class User {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -1,9 +1,9 @@
 package com.bibliothek;
 
 import jakarta.persistence.*;
-import com.bibliothek.Author;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -14,15 +14,19 @@ public class Book {
     private int b_id;
 
     private String title;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "a_id")
     private Author author;
     private String edition;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "p_id")
     private Publisher publisher;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "g_id")
     private Genre genre;
     private Date releaseDate;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "l_id")
     private Lending lending;
     private String description;
 

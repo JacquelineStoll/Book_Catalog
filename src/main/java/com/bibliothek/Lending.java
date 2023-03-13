@@ -3,6 +3,7 @@ package com.bibliothek;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "lending")
@@ -15,12 +16,14 @@ public class Lending {
     private Date startDate;
     private Date endDate;
     private Date returnDate;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "u_id")
     private User user;
-    @OneToOne
-    private Book book;
+    @OneToMany
+    @JoinColumn(name = "b_id")
+    private List<Book> book;
 
-    public Lending(int l_id, Date startDate, Date endDate, Date returnDate, User user, Book book) {
+    public Lending(int l_id, Date startDate, Date endDate, Date returnDate, User user, List<Book> book) {
         this.l_id = l_id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -73,11 +76,11 @@ public class Lending {
         this.user = user;
     }
 
-    public Book getBook() {
+    public List<Book> getBooks() {
         return book;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void addBook(Book book) {
+        this.book.add(book);
     }
 }

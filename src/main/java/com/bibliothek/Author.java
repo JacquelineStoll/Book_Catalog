@@ -3,6 +3,7 @@ package com.bibliothek;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "author")
@@ -15,6 +16,9 @@ public class Author {
     private String forename;
     private String surname;
     private Date dateOfBirth;
+    @OneToMany
+    @JoinColumn(name = "b_id")
+    private List<Book> book;
 
     public Author(int a_id, String forename, String surname, Date dateOfBirth) {
         this.a_id = a_id;
@@ -57,5 +61,13 @@ public class Author {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public List<Book> getBook() {
+        return book;
+    }
+
+    public void setBook(List<Book> book) {
+        this.book = book;
     }
 }
