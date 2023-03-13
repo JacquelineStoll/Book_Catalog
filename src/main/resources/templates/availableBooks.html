@@ -37,7 +37,37 @@
     </div>
 </nav>
 
-
+<div class="table text-center" style="padding: 100px;">
+    <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Edition</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Release Date</th>
+            <th scope="col">Description</th>
+            <th scope="col">Lending Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b :${book}">
+            <th scope="row"></th>
+            <td th:text="${b.id}"></td>
+            <td th:text="${b.title}"></td>
+            <td th:text="${b.author}"></td>
+            <td th:text="${b.genre}"></td>
+            <td th:text="${b.edition}"></td>
+            <td th:text="${b.publisher}"></td>
+            <td th:text="${b.releaseDate}"></td>
+            <td th:text="${b.description}"></td>
+            <td th:text="${b.lending}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
