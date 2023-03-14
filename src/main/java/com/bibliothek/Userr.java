@@ -3,10 +3,18 @@ package com.bibliothek;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.Collection;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+/**
+ * In security.core.userdetails.User ist die Methode withDefaultPasswordEncoder() implementiert, 
+ * die in SecurityConfig.java benötigt wird. Daher der veränderte Name. myUser wäre besser gewesen XD
+ */
 @Entity
 @Table(name = "user")
-public class User {
+public class Userr extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +30,8 @@ public class User {
     private String username;
     private String password;
 
-    public User(int u_id, String forename, String surname, Date dateOfBirth, String street, String houseNumber, String city, String postalCode, String username, String password) {
+    public Userr(int u_id, String forename, String surname, Date dateOfBirth, String street, String houseNumber, String city, String postalCode, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+        super(username, password, authorities);
         this.u_id = u_id;
         this.forename = forename;
         this.surname = surname;
@@ -33,10 +42,6 @@ public class User {
         this.postalCode = postalCode;
         this.username = username;
         this.password = password;
-    }
-
-    public User() {
-        //TODO ?
     }
 
     public int getU_id() {
