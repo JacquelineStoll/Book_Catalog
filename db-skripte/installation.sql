@@ -12,7 +12,8 @@ CREATE TABLE book (
 	release_date date,
 	a_id int,
 	p_id int,
-	g_id int
+	g_id int,
+	is_available BOOLEAN DEFAULT 1
 );
 
 DROP TABLE IF EXISTS author;
