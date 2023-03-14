@@ -21,7 +21,7 @@ DROP VIEW IF EXISTS view_buecher_ausgeliehen_januar;
 
 CREATE VIEW view_buecher_ausgeliehen_januar AS
 SELECT
-	COUNT(*)
+	COUNT(*) AS anzahl
 FROM
 	lending l
 WHERE
@@ -31,7 +31,7 @@ DROP VIEW IF EXISTS view_buecher_ausgeliehen_februar;
 
 CREATE VIEW view_buecher_ausgeliehen_februar AS
 SELECT
-	COUNT(*)
+	COUNT(*) AS anzahl
 FROM
 	lending l
 WHERE
@@ -41,7 +41,7 @@ DROP VIEW IF EXISTS view_buecher_ausgeliehen_maerz;
 
 CREATE VIEW view_buecher_ausgeliehen_maerz AS
 SELECT
-	COUNT(*)
+	COUNT(*) AS anzahl
 FROM
 	lending l
 WHERE
