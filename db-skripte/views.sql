@@ -1,12 +1,12 @@
---Wie viele Bücher eines Genres hat ein Verlag veröffentlicht
+-- Wie viele Bücher eines Genres hat ein Verlag veröffentlicht
 DROP VIEW IF EXISTS view_verlag_buecher_pro_genre;
 
 CREATE VIEW view_verlag_buecher_pro_genre AS
 SELECT
-	p.description AS Verlag,
-	g.name AS Genre,
+	p.description AS verlag,
+	g.name AS genre,
 	COUNT(
-		b.b_id) AS 'Buecher pro Genre'
+		b.b_id) AS 'buecher_pro_genre'
 FROM
 	book b
 	RIGHT JOIN publisher p ON p.p_id = b.p_id
@@ -16,7 +16,7 @@ GROUP BY
 	p.p_id;
 
 
---Bücher ausgeliehen pro Monat
+-- Bücher ausgeliehen pro Monat
 DROP VIEW IF EXISTS view_buecher_ausgeliehen_januar;
 
 CREATE VIEW view_buecher_ausgeliehen_januar AS
@@ -47,7 +47,7 @@ FROM
 WHERE
 	l.start_date BETWEEN '2023-3-1' AND '2023-3-31';
 
---Bücher ausgeliehen pro Q1
+-- Bücher ausgeliehen pro Q1
 DROP VIEW IF EXISTS view_buecher_ausgeliehen_q1;
 
 CREATE VIEW view_buecher_ausgeliehen_q1 AS

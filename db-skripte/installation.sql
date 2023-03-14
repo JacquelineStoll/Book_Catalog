@@ -31,7 +31,7 @@ CREATE TABLE lending (
 	start_date date,
 	end_date date,
 	return_date date,
-	c_id int,
+	u_id int,
 	b_id int
 );
 
@@ -45,7 +45,7 @@ CREATE TABLE genre (
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE user (
-	c_id int PRIMARY KEY AUTO_INCREMENT,
+	u_id int PRIMARY KEY AUTO_INCREMENT,
 	forename varchar(255),
 	surname varchar(255),
 	date_of_birth date,
@@ -71,7 +71,7 @@ ALTER TABLE book
 			ADD CONSTRAINT genre_id FOREIGN KEY (g_id) REFERENCES genre (g_id);
 
 ALTER TABLE lending
-	ADD CONSTRAINT user_id FOREIGN KEY (c_id) REFERENCES user (c_id),
+	ADD CONSTRAINT user_id FOREIGN KEY (u_id) REFERENCES user (u_id),
 		ADD CONSTRAINT book_id FOREIGN KEY (b_id) REFERENCES book (b_id);
 
 INSERT INTO author (forename, surname, date_of_birth)
