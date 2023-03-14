@@ -46,3 +46,14 @@ FROM
 	lending l
 WHERE
 	l.start_date BETWEEN '2023-3-1' AND '2023-3-31';
+
+--Bücher ausgeliehen pro Q1
+DROP VIEW IF EXISTS view_buecher_ausgeliehen_q1;
+
+CREATE VIEW view_buecher_ausgeliehen_q1 AS
+SELECT
+	(j.anzahl + f.anzahl + m.anzahl) AS anzahl
+FROM
+	view_buecher_ausgeliehen_januar j
+	JOIN view_buecher_ausgeliehen_februar f
+	JOIN view_buecher_ausgeliehen_maerz m;
