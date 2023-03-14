@@ -8,6 +8,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+/**
+ * Implementiert WebSecurity
+ * Bean SecurityFilterChain ermöglicht das Filtern der requests + unterschiedliche authy-Handhabung
+ * bei diesen. 
+ * 
+ * Bean UserDetailsService erstellt inMemory einen User mit angegebenen Credentials, falls in DB hinterlegt,
+ * müsste hier die DB durchsucht und nach dem passenden Eintrag durchsucht werden.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
