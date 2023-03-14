@@ -1,4 +1,4 @@
--- check if a boook can be lent and update available
+-- check if a boook can be lent
 DELIMITER //
 CREATE TRIGGER tr_book_can_be_lent
 	BEFORE INSERT ON lending
@@ -6,7 +6,7 @@ CREATE TRIGGER tr_book_can_be_lent
 		SELECT
 			COUNT(*) FROM lending
 	WHERE
-		NEW.u_id = lending.u_id) >= 5 THEN
+		NEW.u_id = lending.u_id AND lending.return_date IS NULL) >= 5 THEN
 		SIGNAL SQLSTATE '45000'
 		SET MESSAGE_TEXT = 'Du darfst keine Bücher mehr ausleihen';
 ELSEIF(
@@ -16,15 +16,16 @@ ELSEIF(
 			book.b_id = NEW.b_id) = 0 THEN
 		SIGNAL SQLSTATE '45000'
 		SET MESSAGE_TEXT = 'Das Buch ist bereits verliehen';
-ELSE
-	UPDATE
-		book
-	SET
-		book.is_available = 0
-	WHERE
-		book.b_id = NEW.b_id;
 END IF//
 DELIMITER ;
+
+-- update available after lending
+CREATE TRIGGER tr_book_lent
+	AFTER INSERT ON lending
+	FOR EACH ROW UPDATE book
+	SET book.is_available = 0
+WHERE
+	book.b_id = NEW.b_id;
 
 -- update available after returning a book
 DELIMITER //
