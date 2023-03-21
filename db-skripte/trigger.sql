@@ -31,7 +31,7 @@ WHERE
 DELIMITER //
 CREATE TRIGGER tr_book_returned
 	AFTER UPDATE ON lending
-	FOR EACH ROW IF(ISNULL(OLD.return_date)) THEN
+	FOR EACH ROW IF(ISNULL(OLD.return_date) AND IFNULL(NEW.return_date, FALSE)) THEN
 	UPDATE
 		book
 	SET
