@@ -20,7 +20,7 @@ public class Lending {
     @JoinColumn(name = "u_id")
     private User user;
     @OneToMany
-    @JoinColumn(name = "b_id")
+    @JoinColumn(name = "l_id")
     private List<Book> book;
 
     public Lending(int l_id, Date startDate, Date endDate, Date returnDate, User user, List<Book> book) {

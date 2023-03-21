@@ -29,16 +29,15 @@
                     <a class="nav-link active" aria-current="page" href="myBooks.html">My Books</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <!--<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-                <a class="nav-link active" aria-current="page" href="myBooks.html"><button class="btn btn-outline-success" type="submit">Lending Service</button></a>
-            </form>
+            <div class="d-flex">
+                <a href="loginPage.html"><button class="btn btn-outline-success" type="submit">Login</button></a>
+            </div>
         </div>
     </div>
 </nav>
 
-<div class="table text-center" style="padding: 100px;">
-    <table class="table table-dark table-hover">
+<div class="table text-center" col-md-10>
+    <table class="table table-dark">
         <thead>
         <tr>
             <th scope="col">#</th>
@@ -48,22 +47,24 @@
             <th scope="col">Edition</th>
             <th scope="col">Publisher</th>
             <th scope="col">Release Date</th>
-            <th scope="col">Description</th>
+            <th scope="col" style="width: 100px;">Description</th>
             <th scope="col">Lending Status</th>
+            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="b :${book}">
-            <th scope="row"></th>
-            <td th:text="${b.id}"></td>
+            <td th:text="${b.b_id}"></td>
             <td th:text="${b.title}"></td>
-            <td th:text="${b.author}"></td>
-            <td th:text="${b.genre}"></td>
+            <td th:text="${b.author.getForename()+ ' ' + b.author.getSurname()}"></td>
+            <td th:text="${b.genre.getName()}"></td>
             <td th:text="${b.edition}"></td>
-            <td th:text="${b.publisher}"></td>
+            <td th:text="${b.publisher.getDescription()}"></td>
             <td th:text="${b.releaseDate}"></td>
-            <td th:text="${b.description}"></td>
-            <td th:text="${b.lending}"></td>
+            <td th:text="${b.description}" style="width: 500px;"></td>
+            <!--<td th:text="${b.lending}"></td>-->
+            <td></td>
+            <td><a class="btn btn-secondary btn-sm">Lend this book</a></td>
         </tr>
         </tbody>
     </table>
