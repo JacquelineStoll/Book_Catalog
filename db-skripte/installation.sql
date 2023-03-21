@@ -86,4 +86,4 @@ INSERT INTO book (title, edition, description, release_date, a_id, p_id, g_id)
 INSERT INTO user(forename, surname, date_of_birth, street, house_number, postal_code, city, username, PASSWORD)
 		values('Finn', 'Schulz', '1999-08-20', 'Dortmunder Straße', '36', 48155, 'Münster', 'fschulz', 'password'), ('Max', 'Mustermann', '1980-10-30', 'Musterweg', '17', 78976, 'Musterhausen', 'mustermax', 'password'), ('Dieter', 'Bohlen', '1954-02-07', 'Bohlenweg', '1', 27804, 'Berne', 'dBohlen', 'ichliebedieterbohlen');
 INSERT INTO lending(start_date, end_date, return_date, u_id, b_id)
-		values('2023-01-06', '2023-01-16', '2023-01-16', 1, 5), ('2023-03-14', '2023-03-28', null, 2, 2), ('2023-02-25', '2023-03-04', '2023-03-04', 1, 6), ('2023-03-18', '2023-04-01', null, 2, 4), ('2023-01-25', '2023-02-12', '2023-02-12', 1, 9), ('2023-02-14', '2023-02-28', null, 3, 11), ('2023-01-13', '2023-01-20', '2023-01-20', 3, 7);
+		values('2023-01-06', '2023-01-16', '2023-01-16', 1, 5), ('2023-02-25', '2023-03-04', '2023-03-04', 1, 6), ('2023-01-25', '2023-02-12', '2023-02-12', 1, 9), ('2023-01-13', '2023-01-20', '2023-01-20', 3, 7);
