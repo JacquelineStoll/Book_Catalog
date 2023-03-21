@@ -15,7 +15,7 @@ public class Publisher {
     private String description;
     private String location;
     @OneToMany
-    @JoinColumn(name = "b_id")
+    @JoinColumn(name = "p_id")
     private List<Book> bookList;
 
     public Publisher(int p_id, String description, String location, List<Book> bookList) {

@@ -28,6 +28,7 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "l_id")
     private Lending lending;
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     public Book(int b_id, String title, Author author, String edition, Publisher publisher, Genre genre, Date releaseDate, Lending lending, String description) {

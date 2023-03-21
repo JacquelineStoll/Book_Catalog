@@ -17,7 +17,7 @@ public class Genre {
     private String name;
 
     @OneToMany
-    @JoinColumn(name = "b_id")
+    @JoinColumn(name = "g_id")
     private List<Book> bookList;
 
     public Genre(int g_id, String name, List<Book> bookList) {

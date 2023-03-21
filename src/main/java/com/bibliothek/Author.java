@@ -17,7 +17,7 @@ public class Author {
     private String surname;
     private Date dateOfBirth;
     @OneToMany
-    @JoinColumn(name = "b_id")
+    @JoinColumn(name = "a_id")
     private List<Book> book;
 
     public Author(int a_id, String forename, String surname, Date dateOfBirth) {

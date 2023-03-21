@@ -34,9 +34,9 @@ public class BookCatalogController {
         return "myBooks";
     }
 
-    @RequestMapping("lendingService.html")
+    @RequestMapping("loginPage.html")
     public String lendingService() {
-        return "lendingService";
+        return "loginPage";
     }
 
 }
