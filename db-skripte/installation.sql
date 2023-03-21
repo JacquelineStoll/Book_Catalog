@@ -55,7 +55,7 @@ CREATE TABLE user (
 	postal_code varchar(255),
 	city varchar(255),
 	username varchar(255),
-	password varchar(255)
+	`password` varchar(255)
 );
 
 DROP TABLE IF EXISTS publisher;
@@ -63,7 +63,7 @@ DROP TABLE IF EXISTS publisher;
 CREATE TABLE publisher (
 	p_id int PRIMARY KEY AUTO_INCREMENT,
 	description varchar(255),
-	LOCATION varchar(255)
+	`location` varchar(255)
 );
 
 ALTER TABLE book
