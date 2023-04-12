@@ -37,7 +37,7 @@
 </nav>
 
 <div class="table text-center" style="padding: 100px;">
-  <table class="table table-dark table-hover">
+  <table class="table table-dark" th:action="@{/save}" method="post">
     <thead>
     <tr>
       <th scope="col">#</th>
@@ -53,9 +53,9 @@
     <tr th:each="l :${Lending}">
       <th scope="row"></th>
       <td th:text="${l.id}"></td>
-      <td th:text="${l.book.title}"></td>
-      <td th:text="${l.book.author}"></td>
-      <td th:text="${l.book.genre}"></td>
+      <td th:text="${l.book.getTitle()}"></td>
+      <td th:text="${l.book.author.getForename() + ' ' + l.book.author.getSurname()}"></td>
+      <td th:text="${l.book.genre.getName()}"></td>
       <td th:text="${l.startDate}"></td>
       <td th:text="${l.endDate}"></td>
       <td th:text="${l.returnDate}"></td>

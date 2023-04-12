@@ -27,7 +27,6 @@ public class Genre {
     }
 
     public Genre() {
-        //TODO ?
     }
 
     public int getG_id() {

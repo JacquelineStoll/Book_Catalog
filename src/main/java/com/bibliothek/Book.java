@@ -44,7 +44,6 @@ public class Book {
     }
 
     public Book() {
-        //TODO?
     }
 
     public int getB_id() {
