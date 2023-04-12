@@ -28,7 +28,6 @@ public class Author {
     }
 
     public Author() {
-        //TODO ?
     }
 
     public int getA_id() {

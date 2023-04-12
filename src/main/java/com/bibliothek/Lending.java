@@ -33,7 +33,6 @@ public class Lending {
     }
 
     public Lending() {
-        //TODO ?
     }
 
     public int getL_id() {

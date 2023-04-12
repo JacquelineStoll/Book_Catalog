@@ -26,7 +26,6 @@ public class Publisher {
     }
 
     public Publisher() {
-        // TODO ?
     }
 
     public int getP_id() {

@@ -1,10 +1,9 @@
 package com.bibliothek;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -14,6 +13,9 @@ public class BookCatalogController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private MyBookService myBookService;
 
     @GetMapping("home.html")
     public String home() {
@@ -30,8 +32,19 @@ public class BookCatalogController {
     }
 
     @RequestMapping("myBooks.html")
-    public String myBooks() {
+    public String myBooks(Model model) {
+        List<Book> list = myBookService.getAllMyBooks();
+        model.addAttribute("book", list);
         return "myBooks";
+    }
+
+    @RequestMapping("/mylist/{id}")
+    public String getMyList(@PathVariable("id") int id) {
+        Book b = bookService.getBookById(id);
+        b.getAuthor().getForename();
+        b.getGenre().getName();
+        myBookService.saveMyBooks(b);
+        return "redirect:/myBooks.html";
     }
 
     @RequestMapping("loginPage.html")

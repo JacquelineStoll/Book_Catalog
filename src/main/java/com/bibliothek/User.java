@@ -36,7 +36,6 @@ public class User {
     }
 
     public User() {
-        //TODO ?
     }
 
     public int getU_id() {
